@@ -10,14 +10,9 @@ Store::Store(string store_name)
   this->name = store_name;
 }
 
-void Store::add_dog_to_list(Dog dog)
+void Store::add_to_list(Pet *pet)
 {
-  dog_grooming_list.push_back(dog);
-}
-
-void Store::add_cat_to_list(Cat cat)
-{
-  cat_grooming_list.push_back(cat);
+  grooming_list.push_back(pet);
 }
 
 string Store::get_name()
@@ -25,46 +20,24 @@ string Store::get_name()
   return name;
 }
 
-void Store::wash_cat()
+void Store::wash_pet()
 {
-  Cat cat = cat_grooming_list.front();
-  cout << "Washing the cat named " << cat.get_name() << endl;
+  Pet *pet{grooming_list.front()};
+  cout << "Washing the pet named " << pet->get_name() << endl;
   cout << "How are you doing, bud?" << endl;
-  cat.speak();
+  pet->speak();
   cout << "Great! You are all done" << endl;
   cout << endl;
-  cat_grooming_list.pop_front();
+  grooming_list.pop_front();
 }
 
-void Store::wash_dog()
+void Store::get_grooming_list()
 {
-  Dog dog = dog_grooming_list.front();
-  cout << "Washing the dog named " << dog.get_name() << endl;
-  cout << "How are you doing, bud?" << endl;
-  dog.speak();
-  cout << "Great! You are all done" << endl;
-  cout << endl;
-  dog_grooming_list.pop_front();
-}
-
-void Store::get_cat_grooming_list()
-{
-  list<Cat>::iterator i;
-  cout << "Here is the list of smelly cats who need a bath!" << endl;
-  for (i = cat_grooming_list.begin(); i != cat_grooming_list.end(); ++i)
+  list<Pet *>::iterator i;
+  cout << "Here is the list of smelly pets who need a bath!" << endl;
+  for (i = grooming_list.begin(); i != grooming_list.end(); ++i)
   {
-    cout << i->get_name() << endl;
-  }
-  cout << endl;
-}
-
-void Store::get_dog_grooming_list()
-{
-  list<Dog>::iterator i;
-  cout << "Here is the list of smelly pups who need a bath!" << endl;
-  for (i = dog_grooming_list.begin(); i != dog_grooming_list.end(); ++i)
-  {
-    cout << i->get_name() << endl;
+    cout << (*i)->get_name() << endl;
   }
   cout << endl;
 }

@@ -1,13 +1,15 @@
 #include <string>
+#include "pet.hpp"
+
 using namespace std;
 
-class Cat
+class Cat : public Pet
 {
 private:
   string name{};
 
 public:
-  string get_name();
   explicit Cat(string name);
-  void speak();
+  string get_name() override;
+  void speak() override;
 };
